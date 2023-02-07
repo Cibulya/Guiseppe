@@ -2,7 +2,8 @@ import { Controller, Post, Req, Get, Res, Patch } from '@nestjs/common';
 import { Request } from 'express';
 import { Response } from 'express';
 import { CoffesService } from './coffes.service';
-@Controller('coffes')
+
+@Controller('coffees')
 export class CoffesController {
   constructor(private readonly coffeService: CoffesService) {}
   @Get()
@@ -29,11 +30,9 @@ export class CoffesController {
   async updateCoffee(@Req() req: Request, @Res() res: Response) {
     const coffee = await this.coffeService.updateCoffee(req.params, req.body);
     if (!coffee) {
-      return res.status(404).json({ Message: 'Coffee updated' });
+      return res.status(404).json({ Message: 'Coffee not found' });
     } else {
-      return res
-        .status(200)
-        .json(await this.coffeService.findOneCoffee(req.params));
+      return res.status(200).json({ Message: 'Coffee updated' });
     }
   }
 }

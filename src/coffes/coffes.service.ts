@@ -6,7 +6,6 @@ import { Coffee, CoffeDocument } from './coffes.schema';
 @Injectable()
 export class CoffesService {
   constructor(@InjectModel(Coffee.name) private coffeModel: Model<Coffee>) {}
-
   async create(coffee: CoffeDocument) {
     const createdCoffee = new this.coffeModel(coffee);
     createdCoffee.index = `${(await this.coffeModel.find().exec()).length + 1}`;
