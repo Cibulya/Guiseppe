@@ -1,11 +1,10 @@
 import { NestFactory } from '@nestjs/core';
-import { CoffesModule } from './coffes/coffes.module';
 import { AppModule } from './app.module';
 
 async function Server() {
   try {
     const app = await NestFactory.create(AppModule, { rawBody: true });
-    await app.listen(3000);
+    await app.listen(process.env.PORT);
   } catch (e) {
     console.log(e);
   }

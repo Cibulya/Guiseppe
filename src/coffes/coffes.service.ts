@@ -9,6 +9,11 @@ export class CoffesService {
   async create(coffee: CoffeDocument) {
     const createdCoffee = new this.coffeModel(coffee);
     createdCoffee.index = `${(await this.coffeModel.find().exec()).length + 1}`;
+    if (!createdCoffee.size) {
+      createdCoffee.size = 'M';
+    } else {
+      createdCoffee.size = createdCoffee.size;
+    }
     return createdCoffee.save();
   }
   async findAllCoffee() {
