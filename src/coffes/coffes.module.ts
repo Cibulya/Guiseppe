@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { CoffesController } from './coffes.controller';
-import { CoffesService } from './coffes.service';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CoffesController } from './coffes.controller';
 import { Coffee, CoffeeSchema } from './coffes.schema';
+import { CoffesService } from './coffes.service';
 
 @Module({
   imports: [
