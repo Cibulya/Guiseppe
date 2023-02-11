@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common/enums';
 import { HttpException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { User, UserDocument } from './users.schema';
 
 @Injectable()
@@ -22,5 +22,12 @@ export class UserService {
 			createdUser.save();
 			throw new HttpException('User Created', HttpStatus.ACCEPTED);
 		}
+	}
+	async findOneUser(params: { userName: any }) {
+		return await this.userModel.findOne({ userName: params.userName });
+	}
+	async patchStatistics(params: FilterQuery<User>, body: UpdateQuery<User>) {
+		let upDatedUser = await this.userModel.findOneAndUpdate(params, body);
+		console.log(upDatedUser);
 	}
 }

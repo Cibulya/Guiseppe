@@ -1,11 +1,18 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import * as fs from 'fs';
+import { Model, UpdateQuery } from 'mongoose';
 import * as path from 'path';
+import { User } from 'src/users/users.schema';
 import * as uuid from 'uuid';
-
+const serverLink = 'http://localhost:5000/';
 @Injectable()
 export class FilesService {
-	async createFile(file: { buffer: string | NodeJS.ArrayBufferView }) {
+	constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+	async createFile(
+		file: { buffer: string | NodeJS.ArrayBufferView },
+		params: UpdateQuery<User>
+	) {
 		try {
 			const fileName = uuid.v4() + '.jpg';
 			const filePath = path.resolve(__dirname, '../', 'static');
@@ -13,10 +20,19 @@ export class FilesService {
 				fs.mkdirSync(filePath, { recursive: true });
 			}
 			fs.writeFileSync(path.join(filePath, fileName), file.buffer);
-			return fileName;
+
+			const userPicLink = `${serverLink}${fileName}`;
+			const findedUser = await this.userModel.findOneAndUpdate(
+				{ userName: params.userName },
+				{
+					userPic: userPicLink,
+				}
+			);
+			console.log(findedUser);
+			return userPicLink;
 		} catch (e) {
 			throw new HttpException(
-				'Произошла ошибка при записи файла',
+				'File no created',
 				HttpStatus.INTERNAL_SERVER_ERROR
 			);
 		}
