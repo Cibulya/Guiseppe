@@ -5,7 +5,6 @@ import { Model, UpdateQuery } from 'mongoose';
 import * as path from 'path';
 import { User } from 'src/users/users.schema';
 import * as uuid from 'uuid';
-const serverLink = 'http://localhost:5000/';
 @Injectable()
 export class FilesService {
 	constructor(@InjectModel(User.name) private userModel: Model<User>) {}
@@ -18,10 +17,18 @@ export class FilesService {
 			const filePath = path.resolve(__dirname, '../', 'static');
 			if (!fs.existsSync(filePath)) {
 				fs.mkdirSync(filePath, { recursive: true });
+				fs.open('index.html', 'w', (err) => {
+					if (err) {
+						throw new Error();
+					}
+					console.log(
+						fs.readdirSync(path.resolve(__dirname, 'static'))
+					);
+				});
 			}
 			fs.writeFileSync(path.join(filePath, fileName), file.buffer);
 
-			const userPicLink = `${serverLink}${fileName}`;
+			const userPicLink = `${process.env.SERVER}${fileName}`;
 			const findedUser = await this.userModel.findOneAndUpdate(
 				{ userName: params.userName },
 				{

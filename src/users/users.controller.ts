@@ -50,7 +50,7 @@ export class UsersController {
 </head>
 <body>
 sas
-  <img src="http://localhost:5000/f83b90be-c379-4c46-8b3c-6ab707c31499.jpg">
+  <img src="http://guiseppe-production.up.railway.app:5000/92e1bfdc-f319-445b-88b9-3c2a7319169d.jpg">
 </body>
 </html>`;
 	}
