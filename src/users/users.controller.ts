@@ -34,7 +34,6 @@ export class UsersController {
 		@UploadedFiles() file: Express.Multer.File,
 		@Req() req: Request
 	) {
-		console.log(file[0]);
 		await this.filesService.createFile(file[0], req.body);
 		throw new HttpException('Picture uploaded', HttpStatus.ACCEPTED);
 	}

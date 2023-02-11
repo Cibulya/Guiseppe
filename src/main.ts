@@ -4,7 +4,7 @@ import { createStaticFolder } from './files/html.file';
 
 async function Server() {
 	try {
-		createStaticFolder();
+		await createStaticFolder();
 		const app = await NestFactory.create(AppModule, {
 			rawBody: true,
 			cors: true,
