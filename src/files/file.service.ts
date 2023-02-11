@@ -16,15 +16,22 @@ export class FilesService {
 			const fileName = uuid.v4() + '.jpg';
 			const filePath = path.resolve(__dirname, '../', 'static');
 			if (!fs.existsSync(filePath)) {
-				fs.mkdirSync(filePath, { recursive: true });
+				fs.mkdir(filePath, { recursive: true }, (err) => {
+					if (err) {
+						console.log(err);
+					}
+				});
 				fs.open('index.html', 'w', async (err) => {
 					if (err) {
 						throw new Error();
 					}
 				});
 			}
-			fs.writeFileSync(path.join(filePath, fileName), file.buffer);
-
+			fs.writeFile(path.join(filePath, fileName), file.buffer, (err) => {
+				if (err) {
+					console.log(err);
+				}
+			});
 			const userPicLink = `${process.env.SERVER}${fileName}`;
 			const findedUser = await this.userModel.findOneAndUpdate(
 				{ userName: params.userName },

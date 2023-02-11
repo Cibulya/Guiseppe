@@ -27,7 +27,7 @@ export class UserService {
 		return await this.userModel.findOne({ userName: params.userName });
 	}
 	async patchStatistics(params: FilterQuery<User>, body: UpdateQuery<User>) {
-		const upDatedUser = await this.userModel.findOneAndUpdate(params, body);
-		console.log(upDatedUser);
+		await this.userModel.findOneAndUpdate(params, body);
+		throw new HttpException('Settings updated!', HttpStatus.ACCEPTED);
 	}
 }
