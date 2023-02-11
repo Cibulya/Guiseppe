@@ -27,7 +27,7 @@ export class UserService {
 		return await this.userModel.findOne({ userName: params.userName });
 	}
 	async patchStatistics(params: FilterQuery<User>, body: UpdateQuery<User>) {
-		let upDatedUser = await this.userModel.findOneAndUpdate(params, body);
+		const upDatedUser = await this.userModel.findOneAndUpdate(params, body);
 		console.log(upDatedUser);
 	}
 }

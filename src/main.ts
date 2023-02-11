@@ -1,8 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { createStaticFolder } from './files/html.file';
 
 async function Server() {
 	try {
+		createStaticFolder();
 		const app = await NestFactory.create(AppModule, {
 			rawBody: true,
 			cors: true,

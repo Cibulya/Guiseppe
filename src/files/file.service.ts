@@ -17,13 +17,10 @@ export class FilesService {
 			const filePath = path.resolve(__dirname, '../', 'static');
 			if (!fs.existsSync(filePath)) {
 				fs.mkdirSync(filePath, { recursive: true });
-				fs.open('index.html', 'w', (err) => {
+				fs.open('index.html', 'w', async (err) => {
 					if (err) {
 						throw new Error();
 					}
-					console.log(
-						fs.readdirSync(path.resolve(__dirname, 'static'))
-					);
 				});
 			}
 			fs.writeFileSync(path.join(filePath, fileName), file.buffer);
