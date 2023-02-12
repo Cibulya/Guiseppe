@@ -6,11 +6,12 @@ import {
 	UploadedFiles,
 	UseInterceptors,
 } from '@nestjs/common';
-import { Patch } from '@nestjs/common/decorators';
+import { Patch, UseGuards } from '@nestjs/common/decorators';
 import { HttpStatus } from '@nestjs/common/enums';
 import { HttpException } from '@nestjs/common/exceptions';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { Request } from 'express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { FilesService } from 'src/files/file.service';
 import { UserService } from './users.service';
 
@@ -20,6 +21,7 @@ export class UsersController {
 		private readonly userService: UserService,
 		private readonly filesService: FilesService
 	) {}
+	@UseGuards(JwtAuthGuard)
 	@Get('user')
 	async findUser(@Req() req: Request) {
 		return await this.userService.findOneUser(req.body);

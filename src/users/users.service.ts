@@ -20,7 +20,7 @@ export class UserService {
 		} else {
 			const createdUser = await this.userModel.create(user);
 			createdUser.save();
-			throw new HttpException('User Created', HttpStatus.ACCEPTED);
+			// throw new HttpException('User Created', HttpStatus.ACCEPTED);
 		}
 	}
 	async findOneUser(params: { userName: any }) {
