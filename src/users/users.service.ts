@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Req } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common/enums';
 import { HttpException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/mongoose';
+import { Request } from 'express';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { User, UserDocument } from './users.schema';
 
@@ -17,11 +18,10 @@ export class UserService {
 				'User allready exist',
 				HttpStatus.BAD_REQUEST
 			);
-		} else {
-			const createdUser = await this.userModel.create(user);
-			createdUser.save();
-			// throw new HttpException('User Created', HttpStatus.ACCEPTED);
 		}
+		const createdUser = await this.userModel.create(user);
+		createdUser.save();
+		// throw new HttpException('User Created', HttpStatus.ACCEPTED);
 	}
 	async findOneUser(params: { userName: any }) {
 		return await this.userModel.findOne({ userName: params.userName });
@@ -29,5 +29,19 @@ export class UserService {
 	async patchStatistics(params: FilterQuery<User>, body: UpdateQuery<User>) {
 		await this.userModel.findOneAndUpdate(params, body);
 		throw new HttpException('Settings updated!', HttpStatus.ACCEPTED);
+	}
+	async activate(@Req() activationLink: Request) {
+		const findedUser = await this.userModel.findOneAndUpdate(
+			activationLink,
+			{ isActivated: true }
+		);
+		if (!findedUser) {
+			throw new HttpException(
+				'Invalid activation link',
+				HttpStatus.BAD_GATEWAY
+			);
+		} else {
+			await findedUser.save();
+		}
 	}
 }

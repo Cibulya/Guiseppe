@@ -20,6 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@fastify/cookie": "^8.3.0",
+    "@nestjs-modules/mailer": "^1.8.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.0",
     "@nestjs/core": "^9.0.0",
@@ -30,8 +32,12 @@
     "@nestjs/serve-static": "^3.0.1",
     "@nestjs/swagger": "^6.2.1",
     "@types/bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.6",
+    "fastify": "^4.13.0",
+    "fastify-cookie": "^5.7.0",
     "mongoose": "^6.9.0",
     "node-static": "^0.7.11",
+    "nodemailer": "^6.9.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
@@ -41,16 +47,19 @@
     "rxjs": "^7.2.0",
     "sequelize": "^6.28.0",
     "sequelize-typescript": "^2.1.5",
-    "swagger-ui-express": "^4.6.0"
+    "swagger-ui-express": "^4.6.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
+    "@types/cookie-parser": "^1.4.3",
     "@types/express": "^4.17.13",
     "@types/jest": "29.2.4",
     "@types/multer": "^1.4.7",
     "@types/node": "18.11.18",
+    "@types/nodemailer": "^6.4.7",
     "@types/passport-jwt": "^3.0.8",
     "@types/passport-local": "^1.0.35",
     "@types/sequelize": "^4.28.14",
@@ -70,7 +79,8 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.1.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "uuidv4": "^6.2.13"
   },
   "jest": {
     "moduleFileExtensions": [

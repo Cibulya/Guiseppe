@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder } from '@nestjs/swagger';
 import { SwaggerModule } from '@nestjs/swagger/dist';
+import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { createStaticFolder } from './files/html.file';
 
@@ -18,6 +19,7 @@ async function Server() {
 		const document = SwaggerModule.createDocument(app, config);
 		SwaggerModule.setup('api/docs', app, document);
 		app.enableCors();
+		app.use(cookieParser());
 		await app.listen(process.env.PORT);
 	} catch (e) {
 		console.log(e);

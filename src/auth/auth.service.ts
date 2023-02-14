@@ -1,21 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import { HttpStatus } from '@nestjs/common/enums';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import {
 	HttpException,
 	UnauthorizedException,
 } from '@nestjs/common/exceptions';
 import { JwtService } from '@nestjs/jwt/dist';
 import * as bcrypt from 'bcrypt';
+import { MailService } from 'src/mail/mail.service';
+import { TokenService } from 'src/token/token.service';
 import { UserDocument } from 'src/users/users.schema';
 import { UserService } from 'src/users/users.service';
+import * as uuid from 'uuid';
+
 @Injectable()
 export class AuthService {
 	constructor(
 		private readonly userService: UserService,
-		private readonly jwtService: JwtService
+		private readonly jwtService: JwtService,
+		private readonly mailService: MailService,
+		private readonly tokenService: TokenService
 	) {}
 	async login(user: UserDocument) {
-		const user1 = await this.validateUser(user);
+		await this.validateUser(user);
 		return await this.generateToken(user);
 	}
 
@@ -28,29 +33,47 @@ export class AuthService {
 				'User allready exist',
 				HttpStatus.BAD_REQUEST
 			);
-		}
-		const secretPassword = await bcrypt.hash(user['password'], 5);
-		user['password'] = secretPassword;
-		user['coffestatus'] = '12';
+		} else {
+			const activationLink = uuid.v4();
+			const secretPassword = await bcrypt.hash(user['password'], 5);
+			user['password'] = secretPassword;
+			user['coffestatus'] = 'none';
+			user['activationLink'] = activationLink;
+			user['isActivated'] = false;
+			user['userPic'] = 'Default pic';
 
-		await this.userService.createUser(user);
-		return await this.generateToken(user);
+			await this.mailService.sendActivationMail(
+				user['email'],
+				`${process.env.SERVER}/activate/${activationLink}`
+			);
+			await this.userService.createUser(user);
+			const { refreshToken, accessToken } = await this.generateToken(
+				user
+			);
+			return { refreshToken, accessToken };
+		}
 	}
 	private async generateToken(user: UserDocument) {
 		const payload = {
 			userName: user['userName'],
 			password: user['password'],
-			coffeeStatus: user['coffeeStatus'],
 		};
-		return {
-			token: this.jwtService.sign(payload),
-		};
+
+		const accessToken = this.jwtService.sign(payload, {
+			privateKey: process.env.ACCESSTOKEN,
+			expiresIn: '30m',
+		});
+		const refreshToken = this.jwtService.sign(payload, {
+			privateKey: process.env.REFRESHTOKEN,
+			expiresIn: '10d',
+		});
+		await this.tokenService.createToken(payload['userName'], refreshToken);
+		return { refreshToken, accessToken };
 	}
 	private async validateUser(user: UserDocument) {
 		const validUser = await this.userService.findOneUser({
 			userName: user['userName'],
 		});
-		console.log(validUser);
 		const passWordChek = await bcrypt.compare(
 			user['password'],
 			validUser['password']

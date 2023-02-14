@@ -5,9 +5,9 @@ export type UserDocument = Document<User>;
 
 @Schema()
 export class User {
-	@Prop()
+	@Prop({ required: true, default: 'User' })
 	userName: string;
-	@Prop()
+	@Prop({ required: true })
 	password: string;
 	@Prop()
 	email: string;
@@ -17,6 +17,8 @@ export class User {
 	coffeeStatus: string;
 	@Prop()
 	isActivated: boolean;
+	@Prop({ unique: true })
+	activationLink: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
