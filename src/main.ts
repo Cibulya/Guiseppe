@@ -18,8 +18,11 @@ async function Server() {
 			.build();
 		const document = SwaggerModule.createDocument(app, config);
 		SwaggerModule.setup('api/docs', app, document);
-		app.enableCors();
 		app.use(cookieParser());
+		app.enableCors({
+			origin: 'http://127.0.0.1:5500',
+			credentials: true,
+		});
 		await app.listen(process.env.PORT);
 	} catch (e) {
 		console.log(e);
