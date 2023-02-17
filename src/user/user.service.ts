@@ -4,16 +4,12 @@ import {
 	Injectable,
 	Req,
 	UnauthorizedException,
-	UploadedFiles,
-	UseInterceptors
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
-import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import * as bcrypt from 'bcrypt';
 import { Request } from 'express';
 import { Model } from 'mongoose';
-import { FilesService } from 'src/files/file.service';
 import { MailService } from 'src/mail/mail.service';
 import { User } from './user.schema';
 @Injectable()
@@ -21,8 +17,7 @@ export class UserService {
 	constructor(
 		@InjectModel(User.name) private userModel: Model<User>,
 		private readonly mailServive: MailService,
-		private readonly jwtServise: JwtService,
-		private readonly fileService: FilesService
+		private readonly jwtServise: JwtService
 	) {}
 
 	async createUser(user: Partial<User>) {
@@ -110,14 +105,5 @@ export class UserService {
 		} else {
 			await activated.save();
 		}
-	}
-	@UseInterceptors(AnyFilesInterceptor())
-	async setUserPic(
-		@UploadedFiles()
-		file: string | NodeJS.ArrayBufferView,
-		@Req() request: Request
-	) {
-		console.log(file);
-		this.fileService.createFile(file['buffer'], request.body);
 	}
 }

@@ -14,10 +14,14 @@ import {
 import { HttpException } from '@nestjs/common/exceptions';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { Request, Response } from 'express';
+import { FilesService } from 'src/files/file.service';
 import { UserService } from './user.service';
 @Controller('api')
 export class UserController {
-	constructor(private readonly userService: UserService) {}
+	constructor(
+		private readonly userService: UserService,
+		private readonly fileservice: FilesService
+	) {}
 
 	@Post('register')
 	async registration(@Req() request: Request) {
@@ -40,8 +44,9 @@ export class UserController {
 		const { jwtToken } = await this.userService.login(request.body);
 		response.cookie('jwt', jwtToken, {
 			httpOnly: true,
-			sameSite: 'none',
-			secure: true,
+			//cookie setup for browser turn on than production!
+			// sameSite: 'none',
+			// secure: true,
 		});
 		const finded = await this.userService.findUser(request.body.email);
 		const {
@@ -96,10 +101,11 @@ export class UserController {
 	@UseInterceptors(AnyFilesInterceptor())
 	async uploadFile(
 		@UploadedFiles() file: Express.Multer.File,
-		@Req() req: Request
+		@Req() req: Request,
+		@Res() response: Response
 	) {
-		// console.log(file);
-		await this.userService.setUserPic(file[0], req.body);
-		throw new HttpException('Picture uploaded', HttpStatus.ACCEPTED);
+		response.json(await this.fileservice.createFile(file[0], req.body));
+
+		// throw new HttpException('Picture uploaded', HttpStatus.ACCEPTED);
 	}
 }
