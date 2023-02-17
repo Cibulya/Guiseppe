@@ -11,7 +11,7 @@ fetch('http://localhost:7000/api/register', {
 		body: JSON.stringify({
 		"name":"Юра1",
 		"password":"passsword",
-		"email": "cibulyadev@gmail.cdom"
+		"email": "drobysh_sv@mail.ru"
 	}),
 	}).then((response) => response.json()).then((data) => console.log(data))
 		
@@ -30,7 +30,7 @@ fetch('http://localhost:7000/api/register', {
 		body: JSON.stringify({
 		"name":"Юра1",
 		"password":"passsword",
-		"email": "cibulyadev@gmail.cdom"
+		"email": "drobysh_sv@mail.ru"
 	})
 	}).then((response) => response.json()).then((data) => console.log(data))
 
