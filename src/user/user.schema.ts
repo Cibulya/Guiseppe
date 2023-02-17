@@ -1,6 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger/dist/decorators';
 import { Document } from 'mongoose';
+import { generateUserImageLink } from 'src/utils/generateRandomUserPick';
+import * as uuid from 'uuid';
+
 export type UserDocument = Document<User>;
 
 @Schema()
@@ -28,13 +31,21 @@ export class User {
 		example: 'http//ultrabackend:4000/johncenavsealbums.jpg',
 		description: 'User picture',
 	})
-	@Prop({ default: 'none' })
+	@Prop({
+		default: () => {
+			return generateUserImageLink();
+		},
+	})
 	userImage: string;
 	@ApiProperty({
 		example: '31231231231334',
 		description: 'Account activation link',
 	})
-	@Prop({ default: 'none' })
+	@Prop({
+		default: () => {
+			return uuid.v4();
+		},
+	})
 	activationLink: string;
 	@ApiProperty({
 		example: false,

@@ -1,0 +1,58 @@
+REGISTRATIon
+fetch('http://localhost:7000/api/register', {
+		method: 'POST',
+		cache: 'force-cache',
+		credentials: 'include',
+		mode: 'cors',
+		origin: 'http://127.0.0.1:5500/',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+		"name":"Юра1",
+		"password":"passsword",
+		"email": "cibulyadev@gmail.cdom"
+	}),
+	}).then((response) => response.json()).then((data) => console.log(data))
+		
+		
+
+//////////////
+    login
+    fetch('http://localhost:7000/api/login', {
+		method: 'POST',
+		credentials: 'include',
+		mode: 'cors',
+		origin: 'http://127.0.0.1:5500/',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+		"name":"Юра1",
+		"password":"passsword",
+		"email": "cibulyadev@gmail.cdom"
+	})
+	}).then((response) => response.json()).then((data) => console.log(data))
+
+  ////get login user
+  fetch('http://localhost:7000/api/user', {
+		method: 'GET',
+		credentials: 'include',
+		mode: 'cors',
+		origin: 'http://127.0.0.1:5500/',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	}).then(response=>response.json()).then(data=>console.log(data))
+
+
+  ///logout
+  fetch('http://localhost:7000/api/logout', {
+		method: 'POST',
+		credentials: 'include',
+		mode: 'cors',
+		origin: 'http://127.0.0.1:5500/',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	}).then(response=>response.json()).then(data=>console.log(data))

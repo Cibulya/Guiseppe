@@ -1,104 +1,90 @@
 import {
-	Body,
 	Controller,
 	Get,
+	HttpStatus,
+	Patch,
 	Post,
 	Req,
 	Res,
 	UnauthorizedException,
+	UploadedFiles,
+	UseInterceptors,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
+
+import { HttpException } from '@nestjs/common/exceptions';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { Request, Response } from 'express';
-import { UserDto } from './user.dto';
 import { UserService } from './user.service';
 @Controller('api')
 export class UserController {
-	constructor(
-		private readonly userService: UserService,
-		private readonly jwtServise: JwtService
-	) {}
+	constructor(private readonly userService: UserService) {}
 
 	@Post('register')
-	async registration(
-		@Body('name') name: string,
-		@Body('email') email: string,
-		@Body('password') password: string
-	) {
+	async registration(@Req() request: Request) {
 		try {
-			const superPass = await bcrypt.hash(password, 5);
-			const user = {
-				name,
-				email,
-				password: superPass,
-			};
-			const newUser = await this.userService.createUser(user);
-			return newUser;
+			return await this.userService.createUser(request.body);
 		} catch (e) {
 			if (e) {
-				console.log(e);
+				throw new HttpException(
+					'User allready exists',
+					HttpStatus.BAD_REQUEST
+				);
 			}
 		}
 	}
 	@Post('login')
 	async login(
-		@Body('email') email: string,
-		@Body('password') password: string,
+		@Req() request: Request,
 		@Res({ passthrough: true }) response: Response
 	) {
-		const user: UserDto = {
-			email,
-		};
-		const finded = await this.userService.findUserByEmail(user);
-		if (!(await bcrypt.compare(password, finded.password))) {
-			throw new UnauthorizedException('Invalid credentials');
-		}
-		const jwtToken = await this.jwtServise.signAsync({
-			email,
+		const { jwtToken } = await this.userService.login(request.body);
+		response.cookie('jwt', jwtToken, {
+			httpOnly: true,
+			sameSite: 'none',
+			secure: true,
 		});
-		response.cookie('jwt', jwtToken, { httpOnly: true });
-
-		await delete finded.password;
-
-		return finded;
+		const validated = await this.userService.validateUser(request);
+		response.json(validated);
 	}
 	@Get('user')
 	async user(@Req() request: Request) {
 		try {
-			const cookie = request.cookies['jwt'];
-			const data = await this.jwtServise.verifyAsync(cookie);
-			if (!data) {
-				throw new UnauthorizedException('Invalid credetials');
-			}
-			const user = await this.userService.findUserByEmail({
-				id: data['id'],
-			});
-			const {
-				name,
-				email,
-				isActivated,
-				activationLink,
-				coffeeStatus,
-				userImage,
-			} = user;
-			const DataToServe = {
-				name,
-				email,
-				isActivated,
-				activationLink,
-				userImage,
-				coffeeStatus,
-			};
-			return DataToServe;
+			return await this.userService.validateUser(request);
 		} catch (e) {
 			throw new UnauthorizedException('Invalid credetials');
 		}
 	}
 	@Post('logout')
 	async logout(@Res({ passthrough: true }) response: Response) {
-		response.clearCookie('jwt');
+		response.cookie('jwt', '', {
+			httpOnly: true,
+			sameSite: 'none',
+			secure: true,
+		});
 		return {
-			message: 'succcess',
+			message: 'Goodbye',
 		};
+	}
+	@Get('activate/:activationLink')
+	async activateUser(@Req() req: Request) {
+		try {
+			await this.userService.activate(req);
+			throw new HttpException('Account activated', HttpStatus.ACCEPTED);
+		} catch (e) {
+			throw new HttpException(
+				'Invalid activation link',
+				HttpStatus.BAD_REQUEST
+			);
+		}
+	}
+	@Patch('setpicture')
+	@UseInterceptors(AnyFilesInterceptor())
+	async uploadFile(
+		@UploadedFiles() file: Express.Multer.File,
+		@Req() req: Request
+	) {
+		// console.log(file);
+		await this.userService.setUserPic(file[0], req.body);
+		throw new HttpException('Picture uploaded', HttpStatus.ACCEPTED);
 	}
 }

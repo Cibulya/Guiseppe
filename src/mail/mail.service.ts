@@ -3,8 +3,6 @@ import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 @Injectable()
 export class MailService {
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	constructor() {}
 	async sendActivationMail(to: string, link: string) {
 		const transporter = nodemailer.createTransport({
 			service: process.env.SMTP_SERVICE,

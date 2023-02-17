@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
+import { FilesService } from 'src/files/file.service';
+import { MailModule } from 'src/mail/mail.module';
+import { MailService } from 'src/mail/mail.service';
 import { UserController } from './user.controller';
 import { User, UserSchema } from './user.schema';
 import { UserService } from './user.service';
@@ -16,9 +19,10 @@ import { UserService } from './user.service';
 			dbName: 'users',
 		}),
 		MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+		MailModule,
 	],
 
-	providers: [UserService],
+	providers: [UserService, MailService, FilesService],
 
 	controllers: [UserController],
 })

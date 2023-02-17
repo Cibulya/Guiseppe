@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { defaultUserPics } from 'src/utils/defaultUserPics';
 export async function createStaticFolder(): Promise<void> {
 	fs.mkdir(
 		path.resolve(__dirname, '../', 'static'),
@@ -12,7 +13,6 @@ export async function createStaticFolder(): Promise<void> {
 	);
 	fs.open(
 		path.resolve(__dirname, '../', 'static', 'index.html'),
-
 		'w',
 		async (err) => {
 			if (err) {

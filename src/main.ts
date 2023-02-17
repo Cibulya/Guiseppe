@@ -4,10 +4,12 @@ import { SwaggerModule } from '@nestjs/swagger/dist';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { createStaticFolder } from './files/html.file';
+import { defaultUserPics } from './utils/defaultUserPics';
 
 async function Server() {
 	try {
 		await createStaticFolder();
+		await defaultUserPics();
 		const app = await NestFactory.create(AppModule, {
 			rawBody: true,
 			cors: true,
@@ -20,8 +22,9 @@ async function Server() {
 		SwaggerModule.setup('api/docs', app, document);
 		app.use(cookieParser());
 		app.enableCors({
-			origin: 'http://127.0.0.1:5500',
+			origin: 'http://127.0.0.1:5500/',
 			credentials: true,
+			methods: ['OPTIONS', 'POST', 'GET'],
 		});
 		await app.listen(process.env.PORT);
 	} catch (e) {
