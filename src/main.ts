@@ -24,7 +24,7 @@ async function Server() {
 		app.enableCors({
 			credentials: true,
 			methods: ['OPTIONS', 'POST', 'GET'],
-			origin: 'https://proj42-production.up.railway.app/',
+			origin: '*',
 			allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
 		});
 		await app.listen(process.env.PORT);

@@ -37,10 +37,11 @@ fetch('http://localhost:7000/api/register', {
   ////get login user
   fetch('http://localhost:7000/api/user', {
 		method: 'GET',
-		credentials: 'include',
+		credentials: 'same-origin',
 		mode: 'cors',
 		origin: 'http://127.0.0.1:5500/',
 		headers: {
+			'Access-Control-Allow-Origin':'http://127.0.0.1:5500/',
 			'Content-Type': 'application/json',
 		},
 	}).then(response=>response.json()).then(data=>console.log(data))
