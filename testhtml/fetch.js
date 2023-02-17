@@ -11,7 +11,7 @@ createUser.addEventListener('click', async () => {
 	fetch('http://localhost:7000/api/register', {
 		method: 'POST',
 		cache: 'force-cache',
-		credentials: 'include',
+		credentials: 'same-origin',
 		mode: 'cors',
 		origin: 'http://http://127.0.0.1:5500/',
 		headers: {

@@ -25,6 +25,7 @@ async function Server() {
 			credentials: true,
 			methods: ['OPTIONS', 'POST', 'GET'],
 			origin: 'https://proj42-production.up.railway.app/',
+			allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
 		});
 		await app.listen(process.env.PORT);
 	} catch (e) {
