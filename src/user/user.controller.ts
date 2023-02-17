@@ -43,8 +43,23 @@ export class UserController {
 			sameSite: 'none',
 			secure: true,
 		});
-		const validated = await this.userService.validateUser(request);
-		response.json(validated);
+		const finded = await this.userService.findUser(request.body.email);
+		const {
+			name,
+			userImage,
+			email,
+			activationLink,
+			isActivated,
+			coffeeStatus,
+		} = finded;
+		response.json({
+			name,
+			userImage,
+			email,
+			activationLink,
+			isActivated,
+			coffeeStatus,
+		});
 	}
 	@Get('user')
 	async user(@Req() request: Request) {
