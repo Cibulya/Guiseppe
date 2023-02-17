@@ -24,6 +24,7 @@ async function Server() {
 		app.enableCors({
 			credentials: true,
 			methods: ['OPTIONS', 'POST', 'GET'],
+			origin: process.env.CLIENT,
 		});
 		await app.listen(process.env.PORT);
 	} catch (e) {
