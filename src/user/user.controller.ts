@@ -45,8 +45,8 @@ export class UserController {
 		response.cookie('jwt', jwtToken, {
 			httpOnly: true,
 			//cookie setup for browser turn on than production!
-			// sameSite: 'none',
-			// secure: true,
+			sameSite: 'none',
+			secure: true,
 		});
 		const finded = await this.userService.findUser(request.body.email);
 		const {

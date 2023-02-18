@@ -27,7 +27,9 @@ export class FilesService {
 				console.log(err);
 			}
 		});
-		const oldImage = await this.userModel.findOne({ email: params.email });
+		const oldImage = await this.userModel.findOne({
+			email: params['email'],
+		});
 		const fileForDeleteName = oldImage.userImage.split('/').pop();
 		if (!fileForDeleteName.match('userImgOne.png' && 'userImgTwo.png')) {
 			fs.unlink(path.join(filePath, fileForDeleteName), (err) => {
@@ -39,16 +41,15 @@ export class FilesService {
 			console.log('IDKFA');
 		}
 		const staticServerImagePath = `${process.env.SERVER}images/${fileName}`;
-		const updatedUser = await this.userModel.findOneAndUpdate(
-			{ email: params.email },
-			{
-				userImage: staticServerImagePath,
-			}
-		);
+		const updatedUser = await this.userModel.findOneAndUpdate({
+			email: params['email'],
+			userImage: staticServerImagePath,
+		});
 		updatedUser.save();
+		console.log(updatedUser);
 		const finalyUpdated = await this.userModel.findOne({
 			email: params.email,
 		});
-		return finalyUpdated.userImage;
+		return finalyUpdated;
 	}
 }
