@@ -25,8 +25,8 @@ async function Server() {
 		app.use(cookieParser());
 		app.enableCors({
 			credentials: true,
-			methods: ['OPTIONS', 'POST', 'GET', 'PUT'],
-			origin: 'http://127.0.0.1:5500/testhtml/',
+			methods: ['OPTIONS', 'POST', 'GET', 'PUT', 'PATCH'],
+			origin: '*',
 			preflightContinue: true,
 			allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
 		});
