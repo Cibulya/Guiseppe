@@ -109,7 +109,10 @@ export class UserController {
 			response.json(await this.fileservice.createFile(file[0], req.body));
 		} catch (e) {
 			if (e) {
-				throw new HttpException('this is test from back end');
+				throw new HttpException(
+					'this is test from back end',
+					HttpStatus.CONFLICT
+				);
 			}
 		}
 	}
