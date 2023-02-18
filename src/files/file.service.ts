@@ -31,7 +31,14 @@ export class FilesService {
 			email: params['email'],
 		});
 		const fileForDeleteName = oldImage.userImage.split('/').pop();
-		if (!fileForDeleteName.match('userImgOne.png' && 'userImgTwo.png')) {
+		if (
+			!fileForDeleteName.match(
+				'userImgOne.png' &&
+					'userImgTwo.png' &&
+					'userImgThree.png' &&
+					'userImgFour.png'
+			)
+		) {
 			fs.unlink(path.join(filePath, fileForDeleteName), (err) => {
 				if (err) {
 					console.log(err);
