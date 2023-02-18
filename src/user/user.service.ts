@@ -19,7 +19,6 @@ export class UserService {
 		private readonly mailServive: MailService,
 		private readonly jwtServise: JwtService
 	) {}
-
 	async createUser(user: Partial<User>) {
 		const candidateUser = await this.userModel.findOne({
 			email: user.email,
@@ -31,7 +30,9 @@ export class UserService {
 			);
 		} else {
 			const superPass = await bcrypt.hash(user.password, 5);
+			const superWord = await bcrypt.hash(user.secretWord, 5);
 			user.password = superPass;
+			user.secretWord = superWord;
 			const newUser = await this.userModel.create(user);
 			newUser.save();
 			const finded = await this.userModel.findOne({
@@ -47,7 +48,10 @@ export class UserService {
 	async login(user: Partial<User>) {
 		try {
 			const finded = await this.findUser(user.email);
-			if (!(await bcrypt.compare(user.password, finded.password))) {
+			if (
+				!(await bcrypt.compare(user.password, finded.password)) &&
+				user.password != finded.password
+			) {
 				throw new UnauthorizedException('Invalid credentials');
 			} else {
 				const { email } = finded;
@@ -97,13 +101,29 @@ export class UserService {
 				isActivated: true,
 			}
 		);
-		if (!activated) {
-			throw new HttpException(
-				'Invalid activation link',
-				HttpStatus.BAD_GATEWAY
-			);
+		await activated.save();
+	}
+	async restorePassword(request: Request) {
+		const finded = await this.userModel.findOne({
+			email: request.body.email,
+		});
+		if (
+			!(await bcrypt.compare(request.body.secretWord, finded.secretWord))
+		) {
+			throw new UnauthorizedException('Invalid credentials');
 		} else {
-			await activated.save();
+			const superPass = await bcrypt.hash(request.body.newPassword, 5);
+			await this.mailServive.sentNewPassword(
+				request.body.email,
+				request.body.newPassword
+			);
+			const modified = await this.userModel.findOneAndUpdate(
+				{ email: request.body.email },
+				{
+					password: superPass,
+				}
+			);
+			modified.save();
 		}
 	}
 }

@@ -25,6 +25,16 @@ export class User {
 		example: 'bingjijgng@chmail.com',
 		description: 'User email',
 	})
+	@ApiProperty({
+		example: 'Zh0n9_C3na',
+		description: 'User password',
+	})
+	@Prop({ default: 'none' })
+	secretWord: string;
+	@ApiProperty({
+		example: 'someword',
+		description: 'User`s secret word',
+	})
 	@Prop({ unique: true })
 	email: string;
 	@ApiProperty({

@@ -86,15 +86,17 @@ export class UserController {
 		};
 	}
 	@Get('activate/:activationLink')
-	async activateUser(@Req() req: Request) {
+	async activateUser(@Req() req: Request, @Res() res: Response) {
 		try {
 			await this.userService.activate(req);
-			throw new HttpException('Account activated', HttpStatus.ACCEPTED);
+			res.status(201).json({ Message: 'Account activated' });
 		} catch (e) {
-			throw new HttpException(
-				'Invalid activation link',
-				HttpStatus.BAD_REQUEST
-			);
+			if (e) {
+				throw new HttpException(
+					'Invalid activation link',
+					HttpStatus.BAD_REQUEST
+				);
+			}
 		}
 	}
 	@Patch('setpicture')
@@ -105,7 +107,9 @@ export class UserController {
 		@Res() response: Response
 	) {
 		response.json(await this.fileservice.createFile(file[0], req.body));
-
-		// throw new HttpException('Picture uploaded', HttpStatus.ACCEPTED);
+	}
+	@Get('restore')
+	async restorePassword(@Req() req: Request) {
+		await this.userService.restorePassword(req);
 	}
 }

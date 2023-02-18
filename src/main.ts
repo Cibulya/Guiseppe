@@ -4,12 +4,14 @@ import { SwaggerModule } from '@nestjs/swagger/dist';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { createStaticFolder } from './files/html.file';
+import { stylesCopy } from './utils/appData';
 import { defaultUserPics } from './utils/defaultUserPics';
 
 async function Server() {
 	try {
 		await createStaticFolder();
 		await defaultUserPics();
+		await stylesCopy();
 		const app = await NestFactory.create(AppModule, {
 			rawBody: true,
 			cors: true,
