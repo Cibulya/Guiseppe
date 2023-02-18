@@ -105,7 +105,13 @@ export class UserController {
 		@Req() req: Request,
 		@Res() response: Response
 	) {
-		response.json(await this.fileservice.createFile(file[0], req.body));
+		try {
+			response.json(await this.fileservice.createFile(file[0], req.body));
+		} catch (e) {
+			if (e) {
+				throw new HttpException('this is test from back end');
+			}
+		}
 	}
 	@Get('restore')
 	async restorePassword(@Req() req: Request) {
