@@ -44,6 +44,7 @@ export class FilesService {
 		const updatedUser = await this.userModel.findOneAndUpdate({
 			email: params['email'],
 			userImage: staticServerImagePath,
+			///test comment
 		});
 		updatedUser.save();
 		console.log(updatedUser);
