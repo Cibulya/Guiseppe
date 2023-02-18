@@ -73,7 +73,7 @@ export class MailService {
 The second rule of the club is not to mention this letter.
 The third club rule is not to respond to this letter.
 For non-compliance with the rules: you will be expelled from the club and we will  install Node JS latest version on your fridge !</p>
-			<p class="letter__password">password</p>
+			<p class="letter__password">${password}</p>
 			<p>Don't forget your pass animore!</p>
 			<p>Hugs for bugs Cyberdyne Systems</p>
 			<p class="letter__year">2023</p>
