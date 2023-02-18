@@ -52,14 +52,19 @@ export class MailService {
 				'Account activation in CoffeeApp by Hugs for bugs Cyberdyne Systems',
 			text: '',
 			html: `
-		<style>
-  @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
-</style>
+		<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://guiseppe-production.up.railway.app/styles/letters.css">
+  <title>Letter</title>
+</head>
+<body>
     <div class="restore-pasword__letter">
-      <div class="letter__header"><p class="header__discription">Hugs For Bugs</p> <img class="letter__logo" src="${
-			process.env.DEPLOYED_SERVER
-		}/images/userImgTwo.png" alt="HugsForBugs"></div>
+      <div class="letter__header"><p class="header__discription">Hugs For Bugs</p> <img class="letter__logo" src="hhttps://guiseppe-production.up.railway.app/images/userImgTwo.png" alt="HugsForBugs"></div>
       
 			<h1 class="letter__heading">Password restore message</h1>
 			<p class="letter__subtitle">Finally, here your got brand new password!</p>
@@ -68,13 +73,15 @@ export class MailService {
 The second rule of the club is not to mention this letter.
 The third club rule is not to respond to this letter.
 For non-compliance with the rules: you will be expelled from the club and we will  install Node JS latest version on your fridge !</p>
-			<p class="letter__password">${password}</p>
+			<p class="letter__password">password</p>
 			<p>Don't forget your pass animore!</p>
 			<p>Hugs for bugs Cyberdyne Systems</p>
 			<p class="letter__year">2023</p>
       </div>
 			<p>${new Date()}</p>
 			</div>  
+</body>
+</html>
 			`,
 		});
 	}
