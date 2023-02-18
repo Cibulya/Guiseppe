@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { generateUserImageLink } from 'src/utils/generateRandomUserPick';
 
 import * as nodemailer from 'nodemailer';
 @Injectable()
@@ -64,7 +65,8 @@ export class MailService {
 </head>
 <body>
     <div class="restore-pasword__letter">
-      <div class="letter__header"><p class="header__discription">Hugs For Bugs</p> <img class="letter__logo" src="hhttps://guiseppe-production.up.railway.app/images/userImgTwo.png" alt="HugsForBugs"></div>
+      <div class="letter__header"><p class="header__discription">Hugs For Bugs</p> <img class="letter__logo" src="${() =>
+			generateUserImageLink()}" alt="HugsForBugs"></div>
       
 			<h1 class="letter__heading">Password restore message</h1>
 			<p class="letter__subtitle">Finally, here your got brand new password!</p>
