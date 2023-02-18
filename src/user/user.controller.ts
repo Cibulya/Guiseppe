@@ -2,7 +2,6 @@ import {
 	Controller,
 	Get,
 	HttpStatus,
-	Patch,
 	Post,
 	Req,
 	Res,
@@ -99,7 +98,7 @@ export class UserController {
 			}
 		}
 	}
-	@Patch('setpicture')
+	@Post('setpicture')
 	@UseInterceptors(AnyFilesInterceptor())
 	async uploadFile(
 		@UploadedFiles() file: Express.Multer.File,

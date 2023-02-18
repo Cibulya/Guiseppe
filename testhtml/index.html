@@ -9,7 +9,7 @@
   <title>Letter</title>
 </head>
 <body>
-    <div class="restore-pasword__letter">
+    <!-- <div class="restore-pasword__letter">
       <div class="letter__header"><p class="header__discription">Hugs For Bugs</p> <img class="letter__logo" src="hhttps://guiseppe-production.up.railway.app/images/userImgTwo.png" alt="HugsForBugs"></div>
       
 			<h1 class="letter__heading">Password restore message</h1>
@@ -25,6 +25,13 @@ For non-compliance with the rules: you will be expelled from the club and we wil
 			<p class="letter__year">2023</p>
       </div>
 			<p>${new Date()}</p>
-			</div>  
+			</div>   -->
+      <form enctype="multipart/form-data" >
+      <input name="file" class="file" type="file">
+      <input name="email" class="email" type="email">
+      <button>fetch</button>
+      </form>
+      
+      <script src="fetch.js"></script>
 </body>
 </html>
