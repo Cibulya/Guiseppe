@@ -40,7 +40,7 @@ export class FilesService {
 		} else {
 			console.log('IDKFA');
 		}
-		const staticServerImagePath = `${process.env.SERVER}images/${fileName}`;
+		const staticServerImagePath = `${process.env.DEPLOYED_SERVER}images/${fileName}`;
 		const updatedUser = await this.userModel.findOneAndUpdate({
 			email: params['email'],
 			userImage: staticServerImagePath,
