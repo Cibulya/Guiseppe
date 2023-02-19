@@ -47,10 +47,10 @@ export class UserService {
 	}
 	async login(user: Partial<User>) {
 		try {
-			const finded = await this.findUser(user.email);
+			const finded = await this.userModel.findOne({ email: user.email });
 			if (
-				!(await bcrypt.compare(user.password, finded.password)) &&
-				user.password != finded.password
+				!(await bcrypt.compare(user.password, finded.password))
+				// user.password != finded.password
 			) {
 				throw new UnauthorizedException('Invalid credentials');
 			} else {
@@ -63,7 +63,7 @@ export class UserService {
 		}
 	}
 	async findUser(condition: any) {
-		const finded = await this.userModel.findOne({ condition });
+		const finded = await this.userModel.findOne({ email: condition.email });
 		if (!finded) {
 			throw new UnauthorizedException('Invalid credentials');
 		} else {

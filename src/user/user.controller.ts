@@ -48,23 +48,11 @@ export class UserController {
 			sameSite: 'none',
 			secure: true,
 		});
-		const finded = await this.userService.findUser(request.body.email);
-		const {
-			name,
-			userImage,
-			email,
-			activationLink,
-			isActivated,
-			coffeeStatus,
-		} = finded;
-		response.json({
-			name,
-			userImage,
-			email,
-			activationLink,
-			isActivated,
-			coffeeStatus,
+		const finded = await this.userService.findUser({
+			email: request.body.email,
 		});
+		console.log(finded);
+		response.json(finded);
 	}
 	@Get('user')
 	async user(@Req() request: Request) {
@@ -76,7 +64,12 @@ export class UserController {
 	}
 	@Post('logout')
 	async logout(@Res({ passthrough: true }) response: Response) {
-		response.cookie('jwt', '', {
+		// response.cookie('jwt', 'fdfdfd', {
+		// 	httpOnly: true,
+		// 	sameSite: 'none',
+		// 	secure: true,
+		// });
+		response.clearCookie('jwt', {
 			httpOnly: true,
 			sameSite: 'none',
 			secure: true,
