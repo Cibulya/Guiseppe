@@ -47,17 +47,17 @@ export class FilesService {
 		} else {
 			console.log('IDKFA');
 		}
+		//process.env.SERVER
+		// process.env.DEPLOYED_SERVER;
 		const staticServerImagePath = `${process.env.DEPLOYED_SERVER}images/${fileName}`;
 		const updatedUser = await this.userModel.findOneAndUpdate({
 			email: params['email'],
 			userImage: staticServerImagePath,
-			///test comment
 		});
 		updatedUser.save();
-		console.log(updatedUser);
 		const finalyUpdated = await this.userModel.findOne({
 			email: params.email,
 		});
-		return finalyUpdated;
+		return finalyUpdated.userImage;
 	}
 }

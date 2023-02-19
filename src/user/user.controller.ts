@@ -91,6 +91,7 @@ export class UserController {
 			res.status(201).json({ Message: 'Account activated' });
 		} catch (e) {
 			if (e) {
+				console.log(req.file);
 				throw new HttpException(
 					'Invalid activation link',
 					HttpStatus.BAD_REQUEST
@@ -106,13 +107,11 @@ export class UserController {
 		@Res() response: Response
 	) {
 		try {
-			response.json(await this.fileservice.createFile(file[0], req.body));
+			const lol = await this.fileservice.createFile(file[0], req.body);
+			response.json(lol);
 		} catch (e) {
 			if (e) {
-				throw new HttpException(
-					'this is test from back end',
-					HttpStatus.CONFLICT
-				);
+				console.log(e);
 			}
 		}
 	}

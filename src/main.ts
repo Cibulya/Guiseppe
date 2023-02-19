@@ -17,12 +17,13 @@ async function Server() {
 			cors: true,
 		});
 		const config = new DocumentBuilder()
-			.setTitle('Api documentation')
+			.setTitle('Api documentati on')
 			.addTag('C:DEV super backend 3000')
 			.build();
 		const document = SwaggerModule.createDocument(app, config);
 		SwaggerModule.setup('api/docs', app, document);
 		app.use(cookieParser());
+
 		app.enableCors({
 			credentials: true,
 			methods: ['OPTIONS', 'POST', 'GET', 'PUT', 'PATCH'],
