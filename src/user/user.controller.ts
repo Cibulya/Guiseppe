@@ -3,6 +3,7 @@ import {
 	Get,
 	HttpStatus,
 	Post,
+	Put,
 	Req,
 	Res,
 	UnauthorizedException,
@@ -99,7 +100,7 @@ export class UserController {
 			}
 		}
 	}
-	@Post('setpicture')
+	@Put('setpicture')
 	@UseInterceptors(AnyFilesInterceptor())
 	async uploadFile(
 		@UploadedFiles() file: Express.Multer.File,

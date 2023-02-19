@@ -40,7 +40,7 @@ export class UserService {
 			});
 			this.mailServive.sendActivationMail(
 				user.email,
-				`${process.env.SERVER}api/activate/${finded.activationLink}`
+				`${process.env.DEPLOYED_SERVER}api/activate/${finded.activationLink}`
 			);
 			return { message: 'User created' };
 		}
