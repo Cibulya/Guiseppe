@@ -24,6 +24,7 @@ import { FilesService } from 'src/files/file.service';
 import {
 	UserCoffeeDto,
 	UserCreateDto,
+	UserNewDto,
 	UserPictureDto,
 	UserQuizDto,
 	UserRestorePassDto,
@@ -44,7 +45,7 @@ export class UserController {
 		description: 'User created',
 	})
 	@ApiBody({
-		type: UserCreateDto,
+		type: UserNewDto,
 		description: 'User',
 	})
 	@Post('register')

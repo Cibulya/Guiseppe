@@ -38,11 +38,6 @@ export class UserRestorePassDto {
 	})
 	@Prop({ unique: true })
 	email: string;
-	// @ApiProperty({
-	// 	example: 'Zh0n9_C3na',
-	// 	description: 'User password',
-	// })
-	// password: string;
 	@ApiProperty({
 		example: 'someword',
 		description: 'User`s secret word',
@@ -127,4 +122,34 @@ export class UserCoffeeDto {
 		description: 'Last coffee choosen',
 	})
 	coffeeStatus: string;
+}
+
+export class UserNewDto {
+	@ApiProperty({
+		example: 'Zhong Cena',
+		description: 'Username',
+	})
+	@Prop()
+	name: string;
+
+	@ApiProperty({
+		example: 'Zh0n9_C3na',
+		description: 'User password',
+	})
+	@Prop()
+	password: string;
+
+	@ApiProperty({
+		example: 'someword',
+		description: 'User`s secret word',
+	})
+	@Prop({ default: 'none' })
+	secretWord: string;
+
+	@ApiProperty({
+		example: 'w@w.uwu',
+		description: 'User`s email',
+	})
+	@Prop({ unique: true })
+	email: string;
 }
