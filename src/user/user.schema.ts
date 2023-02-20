@@ -21,22 +21,21 @@ export class User {
 	})
 	@Prop()
 	password: string;
-	@ApiProperty({
-		example: 'bingjijgng@chmail.com',
-		description: 'User email',
-	})
-	@ApiProperty({
-		example: 'Zh0n9_C3na',
-		description: 'User password',
-	})
-	@Prop({ default: 'none' })
-	secretWord: string;
+
 	@ApiProperty({
 		example: 'someword',
 		description: 'User`s secret word',
 	})
+	@Prop({ default: 'none' })
+	secretWord: string;
+
+	@ApiProperty({
+		example: 'w@w.uwu',
+		description: 'User`s email',
+	})
 	@Prop({ unique: true })
 	email: string;
+
 	@ApiProperty({
 		example: 'http//ultrabackend:4000/johncenavsealbums.jpg',
 		description: 'User picture',
@@ -47,6 +46,7 @@ export class User {
 		},
 	})
 	userImage: string;
+
 	@ApiProperty({
 		example: '31231231231334',
 		description: 'Account activation link',
@@ -57,18 +57,27 @@ export class User {
 		},
 	})
 	activationLink: string;
+
 	@ApiProperty({
 		example: false,
 		description: 'Activation status',
 	})
 	@Prop({ default: false })
 	isActivated: boolean;
+
 	@ApiProperty({
 		example: '0',
-		description: 'Learning status status',
+		description: 'Last coffee prepared',
 	})
-	@Prop({ immutable: true, default: '0' })
+	@Prop({ default: '0' })
 	coffeeStatus: string;
+
+	@ApiProperty({
+		example: '0',
+		description: 'Quiz status',
+	})
+	@Prop({ default: '0' })
+	quizStatus: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

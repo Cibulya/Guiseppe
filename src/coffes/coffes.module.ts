@@ -20,6 +20,5 @@ import { CoffesService } from './coffes.service';
 	],
 	controllers: [CoffesController],
 	providers: [CoffesService],
-	exports: [],
 })
 export class CoffesModule {}

@@ -6,20 +6,21 @@ export type CoffeeSize = 'XS' | 'S' | 'M' | 'L';
 
 @Schema()
 export class Coffee {
-	@ApiProperty({ example: 'Americano', description: 'Uniq name of beverage' })
+	@ApiProperty({ example: 'Espresso', description: 'Uniq name of beverage' })
 	@Prop()
 	name: string;
-	@ApiProperty({ example: 'black', description: 'Color of beverage' })
+	@ApiProperty({ example: '#291612', description: 'Color of beverage' })
 	@Prop()
 	recipe: string;
 	@ApiProperty({
-		example: 'http//localhost:4000/johncenavsealbums.jpg',
+		example:
+			'https://raw.githubusercontent.com/MarinaKovel/coffeemachinedata/main/coffee-types/espresso.png',
 		description: 'Image of beverage',
 	})
 	@Prop()
 	picture: string;
 	@ApiProperty({
-		example: 'M',
+		example: 'S',
 		description: 'Image of beverage',
 	})
 	@Prop()

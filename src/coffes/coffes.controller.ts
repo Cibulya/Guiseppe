@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Post, Req, Res } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger/dist';
 import { ApiBody, ApiParam } from '@nestjs/swagger/dist/decorators';
 import { Request, Response } from 'express';
@@ -61,31 +61,31 @@ export class CoffesController {
 				.json(await this.coffeService.findOneCoffee(req.params));
 		}
 	}
-
-	@ApiOperation({
-		summary: 'Patch one coffee in collection',
-		description: 'Patch one coffee',
-	})
-	@ApiResponse({
-		status: 201,
-		type: Coffee,
-	})
-	@ApiParam({
-		example: '1',
-		description: '1',
-		name: 'index',
-	})
-	@ApiBody({ type: Coffee })
-	@Patch(':index')
-	async updateCoffee(@Req() req: Request, @Res() res: Response) {
-		const coffee = await this.coffeService.updateCoffee(
-			req.params,
-			req.body
-		);
-		if (!coffee) {
-			return res.status(404).json({ Message: 'Coffee not found' });
-		} else {
-			return res.status(200).json({ Message: 'Coffee updated' });
-		}
-	}
+	//don't need for production
+	// @ApiOperation({
+	// 	summary: 'Patch one coffee in collection',
+	// 	description: 'Patch one coffee',
+	// })
+	// @ApiResponse({
+	// 	status: 201,
+	// 	type: Coffee,
+	// })
+	// @ApiParam({
+	// 	example: '1',
+	// 	description: '1',
+	// 	name: 'index',
+	// })
+	// @ApiBody({ type: Coffee })
+	// @Patch(':index')
+	// async updateCoffee(@Req() req: Request, @Res() res: Response) {
+	// 	const coffee = await this.coffeService.updateCoffee(
+	// 		req.params,
+	// 		req.body
+	// 	);
+	// 	if (!coffee) {
+	// 		return res.status(404).json({ Message: 'Coffee not found' });
+	// 	} else {
+	// 		return res.status(200).json({ Message: 'Coffee updated' });
+	// 	}
+	// }
 }

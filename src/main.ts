@@ -23,7 +23,6 @@ async function Server() {
 		const document = SwaggerModule.createDocument(app, config);
 		SwaggerModule.setup('api/docs', app, document);
 		app.use(cookieParser());
-
 		app.enableCors({
 			credentials: true,
 			methods: ['OPTIONS', 'POST', 'GET', 'PUT', 'PATCH'],

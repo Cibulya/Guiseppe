@@ -11,6 +11,7 @@ import * as bcrypt from 'bcrypt';
 import { Request } from 'express';
 import { Model } from 'mongoose';
 import { MailService } from 'src/mail/mail.service';
+import { UserCoffeeDto, UserQuizDto } from './user.dto';
 import { User } from './user.schema';
 @Injectable()
 export class UserService {
@@ -19,6 +20,7 @@ export class UserService {
 		private readonly mailServive: MailService,
 		private readonly jwtServise: JwtService
 	) {}
+
 	async createUser(user: Partial<User>) {
 		const candidateUser = await this.userModel.findOne({
 			email: user.email,
@@ -61,6 +63,7 @@ export class UserService {
 					activationLink,
 					coffeeStatus,
 					userImage,
+					quizStatus,
 				} = finded;
 				const userDto = {
 					name,
@@ -69,6 +72,7 @@ export class UserService {
 					activationLink,
 					coffeeStatus,
 					userImage,
+					quizStatus,
 				};
 				return { jwtToken, userDto };
 			}
@@ -148,5 +152,35 @@ export class UserService {
 			);
 			modified.save();
 		}
+	}
+	async updateQuiz(userQuizDto: UserQuizDto) {
+		const findedUser = await this.userModel.findOne({
+			email: userQuizDto.email,
+		});
+		const progress = parseFloat(findedUser.quizStatus);
+
+		const result = progress + parseFloat(userQuizDto.quizStatus);
+		if (result >= 100) {
+			return {
+				quizStatus: 'You are allready done,Gratz!',
+			};
+		} else {
+			const updateQuizStatus = await this.userModel.findOneAndUpdate(
+				{ email: userQuizDto.email },
+				{ quizStatus: result }
+			);
+			updateQuizStatus.save();
+			return { quizStatus: `${result}` };
+		}
+	}
+	async coffeeStatusUpdate(userCoffeDto: UserCoffeeDto) {
+		const updated = await this.userModel.findOneAndUpdate(
+			{ email: userCoffeDto.email },
+			{
+				coffeeStatus: userCoffeDto.coffeeStatus,
+			}
+		);
+		updated.save();
+		return { message: 'Last coffee saved!' };
 	}
 }
