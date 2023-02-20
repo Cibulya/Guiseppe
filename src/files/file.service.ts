@@ -41,7 +41,7 @@ export class FilesService {
 		) {
 			fs.unlink(path.join(filePath, fileForDeleteName), (err) => {
 				if (err) {
-					console.log(err);
+					console.log('error hapens here nice');
 				}
 			});
 		} else {
@@ -50,10 +50,12 @@ export class FilesService {
 		//process.env.SERVER
 		// process.env.DEPLOYED_SERVER;
 		const staticServerImagePath = `${process.env.DEPLOYED_SERVER}images/${fileName}`;
-		const updatedUser = await this.userModel.findOneAndUpdate({
-			email: params['email'],
-			userImage: staticServerImagePath,
-		});
+		const updatedUser = await this.userModel.findOneAndUpdate(
+			{ email: params.email },
+			{
+				userImage: staticServerImagePath,
+			}
+		);
 		updatedUser.save();
 		const finalyUpdated = await this.userModel.findOne({
 			email: params.email,

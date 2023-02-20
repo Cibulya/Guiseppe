@@ -6,7 +6,6 @@ import {
 	Put,
 	Req,
 	Res,
-	UnauthorizedException,
 	UploadedFiles,
 	UseInterceptors,
 } from '@nestjs/common';
@@ -41,34 +40,29 @@ export class UserController {
 		@Req() request: Request,
 		@Res({ passthrough: true }) response: Response
 	) {
-		const { jwtToken } = await this.userService.login(request.body);
+		const { jwtToken, userDto } = await this.userService.login(
+			request.body
+		);
 		response.cookie('jwt', jwtToken, {
 			httpOnly: true,
-			//cookie setup for browser turn on than production!
 			sameSite: 'none',
 			secure: true,
 		});
-		const finded = await this.userService.findUser({
-			email: request.body.email,
-		});
-		console.log(finded);
-		response.json(finded);
+		response.status(200).json(userDto);
 	}
 	@Get('user')
 	async user(@Req() request: Request) {
 		try {
 			return await this.userService.validateUser(request);
 		} catch (e) {
-			throw new UnauthorizedException('Invalid credetials');
+			throw new HttpException(
+				'Intrnal server error',
+				HttpStatus.BAD_REQUEST
+			);
 		}
 	}
 	@Post('logout')
 	async logout(@Res({ passthrough: true }) response: Response) {
-		// response.cookie('jwt', 'fdfdfd', {
-		// 	httpOnly: true,
-		// 	sameSite: 'none',
-		// 	secure: true,
-		// });
 		response.clearCookie('jwt', {
 			httpOnly: true,
 			sameSite: 'none',

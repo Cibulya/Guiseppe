@@ -48,21 +48,36 @@ export class UserService {
 	async login(user: Partial<User>) {
 		try {
 			const finded = await this.userModel.findOne({ email: user.email });
-			if (
-				!(await bcrypt.compare(user.password, finded.password))
-				// user.password != finded.password
-			) {
+
+			if (!(await bcrypt.compare(user.password, finded.password))) {
+				console.log('sas');
 				throw new UnauthorizedException('Invalid credentials');
 			} else {
 				const { email } = finded;
 				const jwtToken = await this.jwtServise.signAsync({ email });
-				return { jwtToken };
+				const {
+					name,
+					isActivated,
+					activationLink,
+					coffeeStatus,
+					userImage,
+				} = finded;
+				const userDto = {
+					name,
+					email,
+					isActivated,
+					activationLink,
+					coffeeStatus,
+					userImage,
+				};
+				return { jwtToken, userDto };
 			}
 		} catch (e) {
+			console.log(e);
 			throw new UnauthorizedException('Invalid credentials');
 		}
 	}
-	async findUser(condition: any) {
+	async findUser(condition: Partial<User>) {
 		const finded = await this.userModel.findOne({ email: condition.email });
 		if (!finded) {
 			throw new UnauthorizedException('Invalid credentials');
@@ -71,27 +86,35 @@ export class UserService {
 		}
 	}
 	async validateUser(@Req() request: Request) {
-		const cookie = request.cookies['jwt'];
-		const data = await this.jwtServise.verifyAsync(cookie);
-		if (!data) {
-			throw new UnauthorizedException('Invalid credetials');
-		} else {
-			const {
-				name,
-				email,
-				isActivated,
-				activationLink,
-				coffeeStatus,
-				userImage,
-			} = await this.findUser(request.body.id);
-			return {
-				name,
-				email,
-				isActivated,
-				activationLink,
-				coffeeStatus,
-				userImage,
-			};
+		try {
+			const cookie = request.cookies['jwt'];
+			if (!cookie) {
+				return { message: 'Invalid credentials' };
+			} else {
+				const data = await this.jwtServise.verifyAsync(cookie);
+				const {
+					name,
+					email,
+					isActivated,
+					activationLink,
+					coffeeStatus,
+					userImage,
+				} = await this.userModel.findOne({
+					email: data.email,
+				});
+				return {
+					name,
+					email,
+					isActivated,
+					activationLink,
+					coffeeStatus,
+					userImage,
+				};
+			}
+		} catch (e) {
+			if (e) {
+				console.log(e);
+			}
 		}
 	}
 	async activate(@Req() request: Request) {
