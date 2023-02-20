@@ -137,12 +137,10 @@ export class UserController {
 	async activateUser(@Req() req: Request, @Res() res: Response) {
 		try {
 			await this.userService.activate(req);
-			res.status(201)
-				.json({ Message: 'Account activated' })
-				.redirect(process.env.CLIENT);
+			// res.status(201).json({ Message: 'Account activated' });
+			res.redirect(process.env.CLIENT);
 		} catch (e) {
 			if (e) {
-				console.log(req.file);
 				throw new HttpException(
 					'Invalid activation link',
 					HttpStatus.BAD_REQUEST
