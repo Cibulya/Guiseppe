@@ -41,7 +41,7 @@ export class UserController {
 	) {}
 	@ApiOperation({ summary: 'Create User' })
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'User created',
 	})
 	@ApiBody({
@@ -64,7 +64,7 @@ export class UserController {
 
 	@ApiOperation({ summary: 'Get user object' })
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'User',
 		type: UserCreateDto,
 	})
@@ -89,7 +89,7 @@ export class UserController {
 
 	@ApiOperation({ summary: 'Get logged user object' })
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'Object',
 		type: UserCreateDto,
 	})
@@ -106,7 +106,7 @@ export class UserController {
 	}
 	@ApiOperation({ summary: 'Logout' })
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'Goodbye',
 	})
 	@Post('logout')
@@ -125,7 +125,7 @@ export class UserController {
 		description: 'Mail activation',
 	})
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'Account activated',
 	})
 	@ApiParam({
@@ -137,8 +137,7 @@ export class UserController {
 	async activateUser(@Req() req: Request, @Res() res: Response) {
 		try {
 			await this.userService.activate(req);
-			// res.status(201).json({ Message: 'Account activated' });
-			res.redirect(process.env.CLIENT);
+			res.status(200).redirect(process.env.CLIENT);
 		} catch (e) {
 			if (e) {
 				throw new HttpException(
@@ -154,12 +153,12 @@ export class UserController {
 		description: 'New foto',
 	})
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'Picture updated',
 	})
 	@ApiResponse({
 		status: 500,
-		description: 'Iternal Server Error',
+		description: 'Internal Server Error',
 	})
 	@ApiBody({
 		type: UserPictureDto,
@@ -177,7 +176,7 @@ export class UserController {
 		} catch (e) {
 			if (e) {
 				throw new HttpException(
-					'I dont need you files anymore',
+					'We dont need you files anymore',
 					HttpStatus.INTERNAL_SERVER_ERROR
 				);
 			}
@@ -188,7 +187,7 @@ export class UserController {
 		description: 'Set new password with secret word',
 	})
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'New password send via email',
 	})
 	@ApiResponse({
@@ -199,13 +198,14 @@ export class UserController {
 		type: UserRestorePassDto,
 	})
 	@Post('restore')
-	async restorePassword(@Req() req: Request) {
+	async restorePassword(@Req() req: Request, @Res() res: Response) {
 		try {
 			await this.userService.restorePassword(req);
+			res.status(200).json({ message: 'Please check your email' });
 		} catch (e) {
 			throw new HttpException(
 				'Stop forget your passwords',
-				HttpStatus.INTERNAL_SERVER_ERROR
+				HttpStatus.FORBIDDEN
 			);
 		}
 	}
@@ -214,7 +214,7 @@ export class UserController {
 		description: 'Counting answers',
 	})
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'You are God damn right,Jessey!',
 	})
 	@ApiResponse({

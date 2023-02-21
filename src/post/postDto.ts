@@ -8,12 +8,20 @@ export class Post {
 	})
 	@Prop()
 	authorName: string;
+
 	@ApiProperty({
 		example: 'Long time ago in galaxy far away,Jedi kights.....',
 		description: 'Post text',
 	})
 	@Prop()
 	postText: string;
+
+	@ApiProperty({
+		example: 'Date of publication',
+		description: 'Post text',
+	})
+	@Prop({ default: () => new Date() })
+	created: string;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

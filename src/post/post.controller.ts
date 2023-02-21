@@ -17,7 +17,7 @@ export class PostController {
 	constructor(private readonly postService: PostService) {}
 	@ApiOperation({ summary: 'Create post' })
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'Post created',
 	})
 	@ApiBody({
@@ -39,7 +39,7 @@ export class PostController {
 	}
 	@ApiOperation({ summary: 'Get all posts from server.' })
 	@ApiResponse({
-		status: 201,
+		status: 200,
 		description: 'Get all posts',
 		type: [PostDto],
 	})
