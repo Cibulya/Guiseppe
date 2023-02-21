@@ -104,7 +104,7 @@ export class UserController {
 			);
 		}
 	}
-	@ApiOperation({ summary: 'Logoout' })
+	@ApiOperation({ summary: 'Logout' })
 	@ApiResponse({
 		status: 201,
 		description: 'Goodbye',
@@ -129,7 +129,7 @@ export class UserController {
 		description: 'Account activated',
 	})
 	@ApiParam({
-		example: '8c184852-c22d-4f7e-88b5-b8c5ba03f39c',
+		example: 'e4e35de5-4747-4412-8c47-a20ad3ef9ecd',
 		description: '1',
 		name: 'activationLink',
 	})

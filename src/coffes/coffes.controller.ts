@@ -4,7 +4,7 @@ import { ApiBody, ApiParam } from '@nestjs/swagger/dist/decorators';
 import { Request, Response } from 'express';
 import { Coffee } from './coffes.schema';
 import { CoffesService } from './coffes.service';
-@ApiTags('Coffees')
+@ApiTags('All operations with Coffees')
 @Controller('coffees')
 export class CoffesController {
 	constructor(private readonly coffeService: CoffesService) {}
@@ -30,10 +30,7 @@ export class CoffesController {
 		type: Coffee,
 	})
 	@Post()
-	async postNewCoffe(
-		@Req() req: Request,
-		@Res() res: Response
-	): Promise<Response<any, Record<string, any>>> {
+	async postNewCoffe(@Req() req: Request, @Res() res: Response) {
 		this.coffeService.create(req.body);
 		return res.status(200).json({ Message: 'Coffee added to collection' });
 	}
