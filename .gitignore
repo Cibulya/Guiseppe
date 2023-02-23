@@ -17,6 +17,9 @@ lerna-debug.log*
 # Tests
 /coverage
 /.nyc_output
+# dotenv environment variables file
+.env
+.env.test
 
 # IDEs and editors
 /.idea
