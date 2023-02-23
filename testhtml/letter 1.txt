@@ -1,0 +1,17 @@
+    <!-- <div class="restore-pasword__letter">
+      <div class="letter__header"><p class="header__discription">Hugs For Bugs</p> <img class="letter__logo" src="hhttps://guiseppe-production.up.railway.app/images/userImgTwo.png" alt="HugsForBugs"></div>
+      
+			<h1 class="letter__heading">Password restore message</h1>
+			<p class="letter__subtitle">Finally, here your got brand new password!</p>
+      <div class="letter__body">
+      <p class="letter__blabla">The first rule of the club is not to mention the club.
+The second rule of the club is not to mention this letter.
+The third club rule is not to respond to this letter.
+For non-compliance with the rules: you will be expelled from the club and we will  install Node JS latest version on your fridge !</p>
+			<p class="letter__password">password</p>
+			<p>Don't forget your pass animore!</p>
+			<p>Hugs for bugs Cyberdyne Systems</p>
+			<p class="letter__year">2023</p>
+      </div>
+			<p>${new Date()}</p>
+			</div>   -->
