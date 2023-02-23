@@ -191,7 +191,7 @@ export class UserController {
 		description: 'New password send via email',
 	})
 	@ApiResponse({
-		status: 500,
+		status: 403,
 		description: 'Iternal Server Error',
 	})
 	@ApiBody({

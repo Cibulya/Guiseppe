@@ -50,7 +50,6 @@ export class UserService {
 	async login(user: Partial<User>) {
 		try {
 			const finded = await this.userModel.findOne({ email: user.email });
-
 			if (!(await bcrypt.compare(user.password, finded.password))) {
 				console.log('sas');
 				throw new UnauthorizedException('Invalid credentials');
