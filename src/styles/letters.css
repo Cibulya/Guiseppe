@@ -1,0 +1,57 @@
+.restore-pasword__letter{
+  font-family: 'Acme', sans-serif;
+  color:greenyellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  background: url('https://guiseppe-production.up.railway.app/images/letter-bg.png');
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: left;
+}
+
+
+.letter__heading,.letter__subtitle{
+  font-size: 33px;
+}
+
+.letter__header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.letter__blabla{
+  line-height: 33px;
+}
+
+
+.letter__logo{
+  height: 60px;
+  width: 60px;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.header__discription{
+  font-size: 22px;
+}
+
+.letter__body{
+  font-size: 22px;
+  max-width: 400px;
+}
+
+.letter__password{
+  font-size: 50px;
+  color: aquamarine;
+}
+
+.letter__year{
+  font-size: 30px;
+  color: rgb(216, 7, 216);
+}

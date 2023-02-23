@@ -1,0 +1,92 @@
+REGISTRATIon
+fetch('http://localhost:7000/api/register', {
+		method: 'POST',
+		cache: 'force-cache',
+		credentials: 'include',
+		mode: 'cors',
+		origin: 'http://127.0.0.1:5500/',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+		"name":"Юра1",
+		"password":"passsword",
+		"email": "drobysh_sv@mail.ru"
+	}),
+	}).then((response) => response.json()).then((data) => console.log(data))
+		
+		//////
+
+fetch('https://guiseppe-production.up.railway.app/api/user', {
+		method: 'GET',
+		mode: 'cors',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	}).then((response) => response.json()).then((data) => console.log(data))
+
+
+//////////////
+    login
+    fetch('http://localhost:7000/api/login', {
+		method: 'POST',
+		credentials: 'include',
+		mode: 'cors',
+		origin: 'http://127.0.0.1:5500/',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+		"name":"Юра1",
+		"password":"passsword",
+		"email": "drobysh_sv@mail.ru"
+	})
+	}).then((response) => response.json()).then((data) => console.log(data))
+
+  ////get login user
+  fetch('http://localhost:7000/api/user', {
+		method: 'GET',
+		credentials: 'same-origin',
+		mode: 'cors',
+		origin: 'http://127.0.0.1:5500/',
+		headers: {
+			'Access-Control-Allow-Origin':'http://127.0.0.1:5500/',
+			'Content-Type': 'application/json',
+		},
+	}).then(response=>response.json()).then(data=>console.log(data))
+
+
+  ///logout
+  fetch('http://localhost:7000/api/logout', {
+		method: 'POST',
+		credentials: 'include',
+		mode: 'cors',
+		origin: 'http://127.0.0.1:5500/',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	}).then(response=>response.json()).then(data=>console.log(data))
+
+
+
+
+
+
+
+fetch('https://guiseppe-production.up.railway.app/api/login', {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'cors',
+        headers: {
+					'Access-Control-Allow-Origin':'https://proj42-production.up.railway.app/',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+        "name":"Юра1",
+        "password":"passsword",
+        "email": "drobysh_sv@mail.ru"
+    })
+    }).then((response) => response.json()).then((data) => console.log(data))
+
+

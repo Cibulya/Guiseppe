@@ -1,9 +1,38 @@
 import { NestFactory } from '@nestjs/core';
-import { CoffesModule } from './coffes/coffes.module';
+import { DocumentBuilder } from '@nestjs/swagger';
+import { SwaggerModule } from '@nestjs/swagger/dist';
+import * as cookieParser from 'cookie-parser';
+import { AppModule } from './app.module';
+import { createStaticFolder } from './files/html.file';
+import { stylesCopy } from './utils/appData';
+import { defaultUserPics } from './utils/defaultUserPics';
 
-async function bootstrap() {
-  const app = await NestFactory.create(CoffesModule, { rawBody: true });
-  await app.listen(3000);
+async function Server() {
+	try {
+		await createStaticFolder();
+		await defaultUserPics();
+		await stylesCopy();
+		const app = await NestFactory.create(AppModule, {
+			rawBody: true,
+			cors: true,
+		});
+		const config = new DocumentBuilder()
+			.setTitle('Api documentati on')
+			.addTag('C:DEV super backend 3000')
+			.build();
+		const document = SwaggerModule.createDocument(app, config);
+		SwaggerModule.setup('api/docs', app, document);
+		app.use(cookieParser());
+		app.enableCors({
+			credentials: true,
+			methods: ['OPTIONS', 'POST', 'GET', 'PUT', 'PATCH'],
+			origin: '*',
+			preflightContinue: true,
+			allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
+		});
+		await app.listen(process.env.PORT);
+	} catch (e) {
+		console.log(e);
+	}
 }
-bootstrap();
-//dssadas
+Server();

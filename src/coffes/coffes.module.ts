@@ -1,21 +1,24 @@
 import { Module } from '@nestjs/common';
-import { CoffesController } from './coffes.controller';
-import { CoffesService } from './coffes.service';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CoffesController } from './coffes.controller';
 import { Coffee, CoffeeSchema } from './coffes.schema';
-
-const DB_URI =
-  'mongodb+srv://cdev:wvf7eo4HaLfn7yHW@pr42.qojklfb.mongodb.net/?retryWrites=true&w=majority';
+import { CoffesService } from './coffes.service';
 
 @Module({
-  imports: [
-    MongooseModule.forRoot(DB_URI, {
-      dbName: 'coffes',
-    }),
-    MongooseModule.forFeature([{ name: Coffee.name, schema: CoffeeSchema }]),
-  ],
-  controllers: [CoffesController],
-  providers: [CoffesService],
-  exports: [],
+	imports: [
+		ConfigModule.forRoot({
+			isGlobal: true,
+			envFilePath: '.env',
+		}),
+		MongooseModule.forRoot(process.env.DB_URI, {
+			dbName: 'coffees',
+		}),
+		MongooseModule.forFeature([
+			{ name: Coffee.name, schema: CoffeeSchema },
+		]),
+	],
+	controllers: [CoffesController],
+	providers: [CoffesService],
 })
 export class CoffesModule {}
