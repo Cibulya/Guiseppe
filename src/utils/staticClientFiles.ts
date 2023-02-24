@@ -34,7 +34,7 @@ export async function htmlBuilderTrebute() {
 					const folderInDist = path.resolve(distPath, file.name);
 					if (!fs.existsSync(folderInDist)) {
 						fs.mkdir(folderInDist, (e) => {
-							if (e) console.log(e);
+							if (e) console.log('eds');
 						});
 					}
 					const deepFolder = path.resolve(
@@ -78,7 +78,6 @@ export async function htmlBuilderTrebute() {
 												console.log(e);
 											}
 										});
-									} else {
 										fs.readdir(
 											deepestPathInTheWorld,
 											{
@@ -109,10 +108,28 @@ export async function htmlBuilderTrebute() {
 																}
 															}
 														);
+														fs.readdir(
+															superDeepFilePath,
+															{
+																encoding:
+																	'utf-8',
+																withFileTypes:
+																	true,
+															},
+															(
+																e,
+																thedeapestFiles
+															) => {
+																console.log(
+																	thedeapestFiles
+																);
+															}
+														);
 													}
 												);
 											}
 										);
+									} else {
 									}
 								}
 							});

@@ -6,7 +6,13 @@ export async function defaultUserPics() {
 		if (err) {
 			console.log(err);
 		} else {
-			const imagesFolder = path.resolve('./', 'dist', 'static', 'images');
+			const imagesFolder = path.resolve(
+				'./',
+				'dist',
+				'static',
+				'client',
+				'images'
+			);
 			if (fs.existsSync(imagesFolder)) {
 				return;
 			} else {
