@@ -7,7 +7,7 @@ import { UserModule } from './user/user.module';
 @Module({
 	imports: [
 		ServeStaticModule.forRoot({
-			rootPath: path.resolve(__dirname, 'static', 'client'),
+			rootPath: path.resolve('./', 'dist', 'static', 'client'),
 		}),
 		CoffesModule,
 		UserModule,

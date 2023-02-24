@@ -108,28 +108,10 @@ export async function htmlBuilderTrebute() {
 																}
 															}
 														);
-														fs.readdir(
-															superDeepFilePath,
-															{
-																encoding:
-																	'utf-8',
-																withFileTypes:
-																	true,
-															},
-															(
-																e,
-																thedeapestFiles
-															) => {
-																console.log(
-																	thedeapestFiles
-																);
-															}
-														);
 													}
 												);
 											}
 										);
-									} else {
 									}
 								}
 							});
