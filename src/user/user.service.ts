@@ -102,6 +102,7 @@ export class UserService {
 					activationLink,
 					coffeeStatus,
 					userImage,
+					quizStatus,
 				} = await this.userModel.findOne({
 					email: data.email,
 				});
@@ -112,6 +113,7 @@ export class UserService {
 					activationLink,
 					coffeeStatus,
 					userImage,
+					quizStatus,
 				};
 			}
 		} catch (e) {
