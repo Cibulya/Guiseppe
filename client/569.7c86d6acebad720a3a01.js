@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkproj_42=self.webpackChunkproj_42||[]).push([[569],{569:(s,t,e)=>{e.r(t),e.d(t,{default:()=>c});var a=e(5893);const c=function(){return(0,a.jsx)("div",{className:"statistic"})}}}]);
