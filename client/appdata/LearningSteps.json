@@ -1,0 +1,498 @@
+{
+    "LearningSteps": [
+        {
+            "modalCenter": {
+                "text": "Welcome! \n Here we mix Real Life and Digital! We would like to introduce you the MVC architecture pattern on the Real Life Example – Coffee Machine. Or you can relax and drink a digital Coffee :)",
+                "picture": "",
+                "buttonOne": "Let’s start!",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "So, you have an exclusive coffee machine like Elon Musk, do you? Turn it on.",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "Personal account in Coffee Machine? No way! Do you know that Coffee Machine is conceivable as an application divided on 3 parts, like MVC pattern?",
+                "picture": "",
+                "buttonOne": "Let’s see",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "MVC is an architecture pattern which separates logic, UI & database connection of our application. It’s divided into 3 sections: MODEL, VIEW and CONTROLLER.",
+                "picture": "https://raw.githubusercontent.com/MarinaKovel/coffeemachinedata/main/mvc.png",
+                "buttonOne": "OK",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "Now you (User) interact with VIEW. VIEW is responsible for look and feel of our application (UI components, forms, buttons..).",
+                "picture": "",
+                "buttonOne": "Whaaat?",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER \nreceives input from VIEW, uses logic to translate the input to a request for the MODEL",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL \nstores & manages data and provides data to the VIEW",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "But what’s happened during Logging in? \n1. You filled in the Login form in the VIEW.\n2. CONTROLLER verified and sent your data to MODEL. \n3. MODEL updated VIEW and you see your name and picture",
+                "picture": "",
+                "buttonOne": "OK",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "And now let’s make an MVC coffee! Choose a coffee on the screen.",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER:\nChecking validation of the User…",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER:\nChecking water, coffee beans and free space in the waste container…",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER:\nMODEL, you should make ",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL: \nPreparing ",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL: \nGrinding coffee beans. Water enters the boiler and heats up.",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "Coffee is ready. You can take it (click on the cup) in the VIEW. Check if you understood the MVC with a Quiz. Good luck!",
+                "picture": "",
+                "buttonOne": "Repeat",
+                "buttonTwo": "Quiz"
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "Choose the correct element for this step (press 'M' for MODEL, 'V' for VIEW or 'C' for CONTROLLER):",
+                "picture": "",
+                "buttonOne": "Next",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "Choose the correct element for this step (press 'M' for MODEL, 'V' for VIEW or 'C' for CONTROLLER):",
+                "picture": "",
+                "buttonOne": "Next",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "Choose the correct element for this step (press 'M' for MODEL, 'V' for VIEW or 'C' for CONTROLLER):",
+                "picture": "",
+                "buttonOne": "Next",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "Choose the correct element for this step (press 'M' for MODEL, 'V' for VIEW or 'C' for CONTROLLER):",
+                "picture": "",
+                "buttonOne": "Next",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "Choose the correct element for this step (press 'M' for MODEL, 'V' for VIEW or 'C' for CONTROLLER):",
+                "picture": "",
+                "buttonOne": "Next",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "CONTROLLER",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "MODEL",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        },
+        {
+            "modalCenter": {
+                "text": "Finish!\n It’s time to drink a REAL coffee!",
+                "picture": "",
+                "buttonOne": "Shut down PC",
+                "buttonTwo": ""
+            },
+            "modalLeft": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightTop": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            },
+            "modalRightBottom": {
+                "text": "",
+                "picture": "",
+                "buttonOne": "",
+                "buttonTwo": ""
+            }
+        }
+    ]
+}
