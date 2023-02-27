@@ -56,5 +56,6 @@ fetch('http://localhost:7000/coffees', {
 
 If you successfully launch app it will be able on http://localhost:7000/api/docs
 It also available from deployed app [adress](https://guiseppe-production.up.railway.app/api/docs)
-[How to test requests without POSTMAN](https://youtu.be/X4vlwm4xzVk)
+
+# [How to test requests without POSTMAN](https://youtu.be/X4vlwm4xzVk)
 
