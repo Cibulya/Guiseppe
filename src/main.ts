@@ -18,7 +18,7 @@ async function Server() {
 		});
 		const config = new DocumentBuilder()
 			.setTitle('MVC Coffee Api')
-			.addTag('C:DEV super backend 3000')
+			.addTag('Never gonna give you up!')
 			.build();
 		const document = SwaggerModule.createDocument(app, config);
 		SwaggerModule.setup('api/docs', app, document);

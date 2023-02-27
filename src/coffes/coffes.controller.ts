@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Req, Res } from '@nestjs/common';
+import { Controller, Get, Req, Res } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger/dist';
-import { ApiBody, ApiParam } from '@nestjs/swagger/dist/decorators';
+import { ApiParam } from '@nestjs/swagger/dist/decorators';
 import { Request, Response } from 'express';
 import { Coffee } from './coffes.schema';
 import { CoffesService } from './coffes.service';
@@ -18,22 +18,24 @@ export class CoffesController {
 	async getAllCoffes() {
 		return this.coffeService.findAllCoffee();
 	}
-	@ApiOperation({
-		summary: 'Add one coffee to collection',
-		description: 'Add coffee to datadbase',
-	})
-	@ApiResponse({
-		status: 201,
-		description: 'Coffee added to collection',
-	})
-	@ApiBody({
-		type: Coffee,
-	})
-	@Post()
-	async postNewCoffe(@Req() req: Request, @Res() res: Response) {
-		this.coffeService.create(req.body);
-		return res.status(200).json({ Message: 'Coffee added to collection' });
-	}
+
+	// Turn it off for production
+	// @ApiOperation({
+	// 	summary: 'Add one coffee to collection',
+	// 	description: 'Add coffee to datadbase',
+	// })
+	// @ApiResponse({
+	// 	status: 201,
+	// 	description: 'Coffee added to collection',
+	// })
+	// @ApiBody({
+	// 	type: Coffee,
+	// })
+	// @Post()
+	// async postNewCoffe(@Req() req: Request, @Res() res: Response) {
+	// 	this.coffeService.create(req.body);
+	// 	return res.status(200).json({ Message: 'Coffee added to collection' });
+	// }
 	@ApiOperation({
 		summary: 'Find one coffee in collection',
 		description: 'Find one coffee',
