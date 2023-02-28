@@ -8,7 +8,6 @@ describe('MailService', () => {
 		const module: TestingModule = await Test.createTestingModule({
 			providers: [MailService],
 		}).compile();
-
 		service = module.get<MailService>(MailService);
 	});
 

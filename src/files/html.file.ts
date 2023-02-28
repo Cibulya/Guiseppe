@@ -10,13 +10,4 @@ export async function createStaticFolder(): Promise<void> {
 			}
 		}
 	);
-	fs.open(
-		path.resolve(__dirname, '../', 'static', 'index.html'),
-		'w',
-		async (err) => {
-			if (err) {
-				throw new Error();
-			}
-		}
-	);
 }

@@ -525,7 +525,7 @@ For non-compliance with the rules: you will be expelled from the club and we wil
                   <tr>
                     <td style="padding:20px 20px 20px 20px;">
                       <p style="margin:0 0 0 0;text-align: center ;font-size: 30px; color: rgb(185, 25, 185);">
-                            Don't forget your pass animore!
+                            Don't forget your pass anymore!
                       </p>
                   </tr>
                 </table>

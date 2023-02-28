@@ -4,21 +4,21 @@ import { SwaggerModule } from '@nestjs/swagger/dist';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { createStaticFolder } from './files/html.file';
-import { stylesCopy } from './utils/appData';
 import { defaultUserPics } from './utils/defaultUserPics';
+import { htmlBuilderTrebute } from './utils/staticClientFiles';
 
 async function Server() {
 	try {
 		await createStaticFolder();
 		await defaultUserPics();
-		await stylesCopy();
+		await htmlBuilderTrebute();
 		const app = await NestFactory.create(AppModule, {
 			rawBody: true,
 			cors: true,
 		});
 		const config = new DocumentBuilder()
-			.setTitle('Api documentati on')
-			.addTag('C:DEV super backend 3000')
+			.setTitle('MVC Coffee Api')
+			.addTag('Never gonna give you up!')
 			.build();
 		const document = SwaggerModule.createDocument(app, config);
 		SwaggerModule.setup('api/docs', app, document);

@@ -13,7 +13,13 @@ export class FilesService {
 		params: Partial<User>
 	) {
 		const fileName = uuid.v4() + '.jpg';
-		const filePath = path.resolve(__dirname, '../', 'static', 'images');
+		const filePath = path.resolve(
+			__dirname,
+			'../',
+			'static',
+			'client',
+			'images'
+		);
 		if (!fs.existsSync(filePath)) {
 			fs.mkdir(filePath, { recursive: true }, (err) => {
 				if (err) {
