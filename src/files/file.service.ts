@@ -45,9 +45,9 @@ export class FilesService {
 					'userImgFour.png'
 			)
 		) {
-			fs.unlink(path.join(filePath, fileForDeleteName), (err) => {
+			fs.unlink(path.resolve(filePath, fileForDeleteName), (err) => {
 				if (err) {
-					console.log('error hapens here nice');
+					console.log('Error hapens here nice');
 				}
 			});
 		} else {
