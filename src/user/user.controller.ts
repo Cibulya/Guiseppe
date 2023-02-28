@@ -137,7 +137,7 @@ export class UserController {
 	async activateUser(@Req() req: Request, @Res() res: Response) {
 		try {
 			await this.userService.activate(req);
-			res.status(200).redirect(process.env.DEPLOYED_SERVER);
+			res.status(200).redirect(`${process.env.DEPLOYED_SERVER}activate`);
 		} catch (e) {
 			if (e) {
 				throw new HttpException(
